@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1 {
+    @apply text-3xl font-bold md:text-4xl;
+  }
+
+  h2 {
+    @apply text-2xl font-bold md:text-3xl;
+  }
+
+  h3 {
+    @apply text-xl font-bold md:text-2xl;
+  }
+
+  h4 {
+    @apply text-lg font-bold md:text-xl;
+  }
+
+  body {
+    @apply font-primary antialiased;
+  }
+
+  .layout {
+    @apply mx-auto w-11/12 max-w-4xl lg:w-full 2xl:max-w-5xl;
+  }
+
+  @font-face {
+    font-family: Graphik;
+    src: url('/fonts/GraphikRegular.otf') format('opentype');
+  }
+
+  @font-face {
+    font-family: Graphik;
+    font-weight: 500;
+    src: url('/fonts/GraphikMedium.otf') format('opentype');
+  }
+
+  @font-face {
+    font-family: Graphik;
+    font-weight: 600;
+    src: url('/fonts/GraphikSemibold.otf') format('opentype');
+  }
+
+  @font-face {
+    font-family: Graphik;
+    font-weight: 700;
+    src: url('/fonts/GraphikBold.otf') format('opentype');
+  }
+}
