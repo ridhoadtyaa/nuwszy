@@ -7,15 +7,11 @@ type ButtonProps = React.DetailedHTMLProps<
   HTMLButtonElement
 >
 
-const Button: React.FunctionComponent<ButtonProps> = ({ className: c, ...props }) => {
-  const className = clsxm(
-    'inline-flex items-center justify-center',
-    'rounded-lg border border-blue-3 dark:border-blue-7',
-    'outline-none transition-all',
-    'focus-visible:ring',
-    c
-  )
-  return createElement('button', { ...props, className })
+const Button: React.FunctionComponent<ButtonProps> = ({ className, ...props }) => {
+  return createElement('button', {
+    ...props,
+    className: clsxm('inline-flex items-center justify-center', className)
+  })
 }
 
 export default Button
