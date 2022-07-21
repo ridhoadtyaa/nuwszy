@@ -1,7 +1,7 @@
 import { clsxm } from '@/lib'
 
-import Button from './buttons/Button'
-import UnstyledLink from './links/UnstyedLink'
+import Button from '../UI/buttons/Button'
+import UnstyledLink from '../UI/links/UnstyedLink'
 
 import { useState } from 'react'
 import { AiOutlineClose as CloseMenu, AiOutlineMenu as HambMenu } from 'react-icons/ai'
@@ -21,8 +21,8 @@ const navItems = [
     href: '/category/tutorials'
   },
   {
-    title: 'Library',
-    href: '/category/library'
+    title: 'Coding',
+    href: '/category/coding'
   }
 ]
 
@@ -62,7 +62,7 @@ const Nav: React.FunctionComponent = () => {
                 'lg:hover:text-slate-400',
                 'transition duration-300',
                 'py-2',
-                'hover:bg-slate-200 w-full lg:w-fit'
+                'hover:bg-slate-200 w-full lg:w-fit lg:hover:bg-transparent'
               )}
               key={item.title}
             >
