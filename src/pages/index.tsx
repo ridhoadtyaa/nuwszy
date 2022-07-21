@@ -1,4 +1,4 @@
-import Layout from '@/components/Layout'
+import Layout from '@/components/Layout/Layout'
 import ArticleCard from '@/components/UI/ArticleCard'
 
 import { clsxm } from '@/lib'
