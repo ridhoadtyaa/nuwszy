@@ -7,6 +7,12 @@ import { clsxm } from '@/lib'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 
+type ServerSideParams = {
+  params: {
+    category: string
+  }
+}
+
 const Category: NextPage = () => {
   const router = useRouter()
 
@@ -30,6 +36,18 @@ const Category: NextPage = () => {
       </section>
     </Layout>
   )
+}
+
+export const getServerSideProps = ({ params: { category } }: ServerSideParams) => {
+  const categoryList = ['design-tools', 'daily-update', 'tutorials', 'coding']
+
+  if (!categoryList.includes(category)) {
+    return {
+      notFound: true
+    }
+  }
+
+  return { props: {} }
 }
 
 export default Category
