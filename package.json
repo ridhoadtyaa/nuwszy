@@ -19,6 +19,7 @@
     "format": "prettier --config ./.prettierrc.js --write"
   },
   "dependencies": {
+    "@hookform/resolvers": "^2.9.6",
     "@supabase/supabase-js": "^1.35.4",
     "axios": "^0.27.2",
     "isomorphic-fetch": "^3.0.0",
@@ -26,8 +27,10 @@
     "next": "12.1.6",
     "react": "18.1.0",
     "react-dom": "18.1.0",
+    "react-hook-form": "^7.33.1",
     "react-icons": "^4.4.0",
-    "react-outside-click-handler": "^1.3.0"
+    "react-outside-click-handler": "^1.3.0",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^3.2.0",
