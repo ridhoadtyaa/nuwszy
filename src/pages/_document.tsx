@@ -17,12 +17,7 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang='en-US'>
-        <Head>
-          <link
-            rel='icon'
-            href='https://ik.imagekit.io/qmw3y9jqe/image_fp2T1MZiW.webp?ik-sdk-version=javascript-1.4.3&updatedAt=1656857628815'
-          />
-        </Head>
+        <Head></Head>
         <body>
           <Main />
           <NextScript />
