@@ -16,7 +16,7 @@ const Header: React.FunctionComponent<HeaderProps> = ({ customHeader }) => {
           <>{customHeader}</>
         ) : (
           <>
-            <div className={clsxm('mb-6', 'text-lg font-semibold')}>👋 HELLO</div>
+            <div className={clsxm('mb-6', 'text-xl font-semibold')}>👋 HELLO</div>
             <h1 className={clsxm('text-3xl md:text-4xl xl:text-5xl')}>
               Get lots of interesting insights from various people here.
             </h1>
