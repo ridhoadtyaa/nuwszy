@@ -5,7 +5,7 @@ type CategoryHeaderProps = {
 }
 
 const CategoryHeader: React.FunctionComponent<CategoryHeaderProps> = ({ title }) => {
-  const prettieTitle = title.replace('-', ' ')
+  const prettieTitle = title?.replace('-', ' ')
 
   return (
     <>
