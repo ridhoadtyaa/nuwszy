@@ -1,7 +1,7 @@
-import { clsxm } from '@/lib'
+import Button from '@/components/UI/buttons/Button'
+import Input from '@/components/forms/Input'
 
-import Button from '../UI/buttons/Button'
-import Input from '../forms/Input'
+import { clsxm } from '@/lib'
 
 const Subscribe: React.FunctionComponent = () => (
   <section

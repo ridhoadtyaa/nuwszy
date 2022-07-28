@@ -1,7 +1,8 @@
-import { clsxm } from '@/lib'
+import Button from '@/components/UI/buttons/Button'
+import UnstyledLink from '@/components/UI/links/UnstyedLink'
 
-import Button from '../UI/buttons/Button'
-import UnstyledLink from '../UI/links/UnstyedLink'
+import useUser from '@/hooks/useUser'
+import { clsxm } from '@/lib'
 
 import { useState } from 'react'
 import { AiOutlineClose as CloseMenu, AiOutlineMenu as HambMenu } from 'react-icons/ai'
@@ -27,6 +28,7 @@ const navItems = [
 ]
 
 const Nav: React.FunctionComponent = () => {
+  const user = useUser()
   const [isNavMobile, setIsNavMovile] = useState<boolean>(false)
 
   return (
@@ -70,20 +72,24 @@ const Nav: React.FunctionComponent = () => {
             </UnstyledLink>
           ))}
         </div>
-        <UnstyledLink
-          href='/login'
-          className={clsxm(
-            'bg-slate-200 hover:bg-slate-300 lg:bg-white/10 lg:hover:bg-white/20',
-            'py-2 px-6',
-            'text-sm font-medium lg:text-base',
-            'lg:rounded-lg',
-            'transition duration-300',
-            'flex justify-center lg:block'
-          )}
-        >
-          Login
-          <span className={clsxm('sr-only')}>Login button</span>
-        </UnstyledLink>
+        {!user ? (
+          <UnstyledLink
+            href='/login'
+            className={clsxm(
+              'bg-slate-200 hover:bg-slate-300 lg:bg-white/10 lg:hover:bg-white/20',
+              'py-2 px-6',
+              'text-sm font-medium lg:text-base',
+              'lg:rounded-lg',
+              'transition duration-300',
+              'flex justify-center lg:block'
+            )}
+          >
+            Login
+            <span className={clsxm('sr-only')}>Login button</span>
+          </UnstyledLink>
+        ) : (
+          <UnstyledLink href='/dashboard'>{user.name}</UnstyledLink>
+        )}
       </div>
     </nav>
   )
