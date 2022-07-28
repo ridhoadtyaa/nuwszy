@@ -8,6 +8,7 @@ declare module 'nuwszy' {
   }
 
   export type SignupUserPayload = {
+    name: string
     email: string
     password: string
   }
@@ -15,5 +16,11 @@ declare module 'nuwszy' {
   export type SigninUserPayload = {
     email: string
     password: string
+  }
+
+  export type User = {
+    id: string
+    email: string
+    name: string
   }
 }
