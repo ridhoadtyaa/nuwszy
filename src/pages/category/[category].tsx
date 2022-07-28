@@ -1,4 +1,4 @@
-import Layout from '@/components/Layout/Layout'
+import MainLayout from '@/components/Layouts/MainLayout'
 import ArticleCard from '@/components/UI/ArticleCard'
 import CategoryHeader from '@/components/UI/CategoryHeader'
 
@@ -19,7 +19,7 @@ const Category: NextPage = () => {
   const categoryTitle = router.query.category as string
 
   return (
-    <Layout customHeader={<CategoryHeader title={categoryTitle} />}>
+    <MainLayout customHeader={<CategoryHeader title={categoryTitle} />}>
       <section>
         <h1 className={clsxm('capitalize text-primary', 'mb-6')}>
           {categoryTitle?.replace('-', ' ')}
@@ -34,7 +34,7 @@ const Category: NextPage = () => {
           slug='test-test'
         />
       </section>
-    </Layout>
+    </MainLayout>
   )
 }
 
