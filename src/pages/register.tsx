@@ -5,32 +5,30 @@ import ErrorMessage from '@/components/forms/ErrorMessage'
 import Input from '@/components/forms/Input'
 
 import { clsxm } from '@/lib'
-import { signIn } from '@/services/Supebase'
-import { loginSchema } from '@/utils'
+import { signUp } from '@/services/Supebase'
+import { registerSchema } from '@/utils'
 
 import { yupResolver } from '@hookform/resolvers/yup'
 import { NextPage } from 'next'
-import { useRouter } from 'next/router'
-import { SigninUserPayload } from 'nuwszy'
+import { SignupUserPayload } from 'nuwszy'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { FaUserAlt } from 'react-icons/fa'
 import { MdEmail, MdLock } from 'react-icons/md'
 
-const LoginPage: NextPage = () => {
-  const router = useRouter()
-
+const RegisterPage: NextPage = () => {
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting }
-  } = useForm<SigninUserPayload>({
-    resolver: yupResolver(loginSchema),
+  } = useForm<SignupUserPayload>({
+    resolver: yupResolver(registerSchema),
     shouldFocusError: true
   })
 
-  const onSubmit: SubmitHandler<SigninUserPayload> = async (data) => {
-    const res = await signIn(data)
+  const onSubmit: SubmitHandler<SignupUserPayload> = async (data) => {
+    const res = await signUp(data)
 
-    if (res) router.push('/dashboard')
+    if (res) console.log('mantap')
   }
 
   return (
@@ -46,11 +44,30 @@ const LoginPage: NextPage = () => {
           />
         </UnstyledLink>
         <div className={clsxm('bg-white rounded-md', 'py-12 px-10')}>
-          <h3 className={clsxm('text-primary font-medium text-center', 'mb-3')}>Welcome Back</h3>
+          <h3 className={clsxm('text-primary font-medium text-center', 'mb-3')}>
+            Register Account
+          </h3>
           <p className={clsxm('text-center text-slate-400/80', 'mb-12')}>
-            Enter your crendetials to access your account
+            Register first before writing.
           </p>
           <form onSubmit={handleSubmit(onSubmit)}>
+            <div className={clsxm('relative', 'mb-8')}>
+              <Input
+                placeholder='Enter your full name'
+                type='text'
+                className={clsxm(
+                  'focus:ring focus:ring-blue-300 border border-blue-100',
+                  errors.email?.message && 'border-red-400 focus:border-red-400 focus:ring-red-400',
+                  'placeholder:text-slate-400 md:placeholder:text-sm',
+                  'rounded-sm w-full',
+                  'py-2 pl-12',
+                  'mb-2'
+                )}
+                {...register('name')}
+              />
+              <FaUserAlt className={clsxm('text-blue-400', 'absolute top-3 left-3')} size={20} />
+              <ErrorMessage message={errors.name?.message} />
+            </div>
             <div className={clsxm('relative', 'mb-8')}>
               <Input
                 placeholder='Enter your email'
@@ -101,20 +118,20 @@ const LoginPage: NextPage = () => {
                 'py-3'
               )}
             >
-              Login
+              Register
             </Button>
           </form>
         </div>
         <UnstyledLink
-          href='/register'
+          href='/login'
           className={clsxm('text-slate-400  text-center', 'mt-8', 'block')}
         >
-          Don&apos;t have an account ?{' '}
-          <span className={clsxm('text-blue-500 font-medium')}>Register</span>
+          Already have an account ?{' '}
+          <span className={clsxm('text-blue-500 font-medium')}>Login</span>
         </UnstyledLink>
       </div>
     </div>
   )
 }
 
-export default LoginPage
+export default RegisterPage
