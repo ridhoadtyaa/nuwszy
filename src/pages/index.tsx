@@ -1,4 +1,4 @@
-import Layout from '@/components/Layout/Layout'
+import MainLayout from '@/components/Layouts/MainLayout'
 import ArticleCard from '@/components/UI/ArticleCard'
 
 import { clsxm } from '@/lib'
@@ -12,7 +12,7 @@ type HomePageProps = {
 
 const Home: NextPage<HomePageProps> = () => {
   return (
-    <Layout>
+    <MainLayout>
       <section>
         <div>
           <h1 className={clsxm('text-primary', 'mb-6')}>Design Tools</h1>
@@ -27,7 +27,7 @@ const Home: NextPage<HomePageProps> = () => {
           />
         </div>
       </section>
-    </Layout>
+    </MainLayout>
   )
 }
 
