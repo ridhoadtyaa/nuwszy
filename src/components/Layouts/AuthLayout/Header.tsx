@@ -51,10 +51,24 @@ const Header: React.FunctionComponent = () => {
         )}
       >
         <div className={clsxm('space-x-10', 'font-medium')}>
-          <UnstyledLink href='/dashboard' className={clsxm('py-4', 'border-b-4 border-primary')}>
+          <UnstyledLink
+            href='/dashboard'
+            className={clsxm(
+              'py-4',
+              router.pathname === '/dashboard' && 'border-b-4 border-primary'
+            )}
+          >
             My Post
           </UnstyledLink>
-          <UnstyledLink href='/dashboard/profile'>Profile</UnstyledLink>
+          <UnstyledLink
+            href='/dashboard/profile'
+            className={clsxm(
+              'py-4',
+              router.pathname === '/dashboard/profile' && 'border-b-4 border-primary'
+            )}
+          >
+            Profile
+          </UnstyledLink>
         </div>
         <Button title='Log Out' onClick={signOutHandler}>
           <LogOut size={24} />
