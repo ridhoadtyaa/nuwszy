@@ -7,7 +7,6 @@ const Subscribe: React.FunctionComponent = () => (
   <section
     className={clsxm(
       'bg-primary rounded-xl md:rounded-lg',
-      'layout',
       'flex items-center flex-col',
       'py-20',
       'my-24',
@@ -23,8 +22,8 @@ const Subscribe: React.FunctionComponent = () => (
         'p-16'
       )}
     />
-    <h2 className={clsxm('text-white mb-5', 'relative z-10')}>Subscribe to Nuwszy.</h2>
-    <p className={clsxm('text-slate-200 text-lg mb-11')}>I post fresh content every time.</p>
+    <h2 className={clsxm('text-white', 'relative z-10', 'mb-5')}>Subscribe to Nuwszy.</h2>
+    <p className={clsxm('text-slate-200 text-lg', 'mb-11')}>I post fresh content every time.</p>
     <div className={clsxm('w-10/12 sm:w-6/12', 'flex items-center')}>
       <Input
         className={clsxm('px-4 py-3', 'w-full rounded-r-none', 'text-base')}

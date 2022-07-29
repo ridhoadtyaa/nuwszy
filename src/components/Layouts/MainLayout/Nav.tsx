@@ -88,7 +88,18 @@ const Nav: React.FunctionComponent = () => {
             <span className={clsxm('sr-only')}>Login button</span>
           </UnstyledLink>
         ) : (
-          <UnstyledLink href='/dashboard'>{user.name}</UnstyledLink>
+          <UnstyledLink
+            href='/dashboard'
+            className={clsxm(
+              'bg-slate-200 hover:bg-slate-300 lg:bg-transparent lg:hover:bg-transparent',
+              'py-2 px-6 lg:px-0',
+              'text-sm font-medium lg:text-base',
+              'transition duration-300',
+              'flex justify-center lg:block'
+            )}
+          >
+            {user.name}
+          </UnstyledLink>
         )}
       </div>
     </nav>
