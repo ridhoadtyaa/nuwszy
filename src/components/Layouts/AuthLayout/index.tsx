@@ -1,3 +1,5 @@
+import LoadingPage from '@/components/Lazy/LoadingPage'
+
 import { clsxm } from '@/lib'
 import { supabase } from '@/services/Supebase'
 
@@ -20,6 +22,10 @@ const AuthLayout: React.FunctionComponent<AuthLayoutProps> = ({ children }) => {
       router.push('/login')
     }
   }, [router, isUser])
+
+  if (!isUser) {
+    return <LoadingPage />
+  }
 
   return (
     <>
