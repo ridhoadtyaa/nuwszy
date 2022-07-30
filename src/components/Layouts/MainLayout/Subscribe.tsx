@@ -26,7 +26,12 @@ const Subscribe: React.FunctionComponent = () => (
     <p className={clsxm('text-slate-200 text-lg', 'mb-11')}>I post fresh content every time.</p>
     <div className={clsxm('w-10/12 sm:w-6/12', 'flex items-center')}>
       <Input
-        className={clsxm('px-4 py-3', 'w-full rounded-r-none', 'text-base')}
+        className={clsxm(
+          'px-4 py-[12px]',
+          'w-full rounded-r-none',
+          'text-base',
+          'border-0 focus:ring-0'
+        )}
         placeholder='Email Address'
       />
       <Button
