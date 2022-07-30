@@ -5,18 +5,22 @@ import ErrorMessage from '@/components/forms/ErrorMessage'
 import Input from '@/components/forms/Input'
 
 import { clsxm } from '@/lib'
-import { signIn } from '@/services/Supebase'
+import { signIn, supabase } from '@/services/Supebase'
 import { loginSchema } from '@/utils'
 
 import { yupResolver } from '@hookform/resolvers/yup'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { SigninUserPayload } from 'nuwszy'
+import { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import { MdEmail, MdLock } from 'react-icons/md'
 
 const LoginPage: NextPage = () => {
+  const user = supabase.auth.user()
   const router = useRouter()
+  const [passwordShown, setPasswordShown] = useState(false)
 
   const {
     register,
@@ -32,6 +36,10 @@ const LoginPage: NextPage = () => {
 
     if (res) router.push('/dashboard')
   }
+
+  useEffect(() => {
+    if (user) router.push('/dashboard')
+  }, [router, user])
 
   return (
     <div className={clsxm('bg-blue-100/50 min-h-screen', 'flex items-center')}>
@@ -74,19 +82,32 @@ const LoginPage: NextPage = () => {
             <div className={clsxm('relative', 'mb-10')}>
               <Input
                 placeholder='Enter your password'
-                type='password'
+                type={passwordShown ? 'text' : 'password'}
                 className={clsxm(
                   'focus:ring focus:ring-blue-300 border border-blue-100',
                   errors.password?.message &&
                     'border-red-400 focus:border-red-400 focus:ring-red-400',
                   'placeholder:text-slate-400 md:placeholder:text-sm',
                   'rounded-sm w-full',
-                  'py-2 pl-12',
+                  'py-2 px-12',
                   'mb-2'
                 )}
                 {...register('password')}
               />
               <MdLock className={clsxm('text-blue-400', 'absolute top-[9.5px] left-2')} size={23} />
+              {passwordShown ? (
+                <AiFillEyeInvisible
+                  onClick={() => setPasswordShown(false)}
+                  className='text-slate-300 absolute top-[9.5px] right-3 cursor-pointer'
+                  size={23}
+                />
+              ) : (
+                <AiFillEye
+                  onClick={() => setPasswordShown(true)}
+                  className='text-slate-300 absolute top-[9.5px] right-3 cursor-pointer'
+                  size={23}
+                />
+              )}
               <ErrorMessage message={errors.password?.message} />
             </div>
             <Button
