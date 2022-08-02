@@ -5,7 +5,7 @@ type ErrorMessageProps = {
 }
 
 const ErrorMessage: React.FunctionComponent<ErrorMessageProps> = ({ message }) => {
-  return <span className={clsxm('text-red-400 text-sm')}>{message}</span>
+  return <span className={clsxm('text-red-400 text-sm', 'block', 'mt-1')}>{message}</span>
 }
 
 export default ErrorMessage
