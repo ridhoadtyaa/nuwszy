@@ -5,6 +5,7 @@ import { useRef } from 'react'
 // if you want to use this component, use dynamic import
 // https://nextjs.org/docs/advanced-features/dynamic-import
 
+/* eslint-disable  @typescript-eslint/no-explicit-any */
 /* eslint-disable react/require-default-props */
 interface MarkdownEditorProps {
   placeholder: string
@@ -19,7 +20,7 @@ const MarkdownEditor: React.FunctionComponent<MarkdownEditorProps> = ({
   height = '400px',
   changeValue
 }) => {
-  const editorRef = useRef<Editor>()
+  const editorRef = useRef<any>()
 
   return (
     <Editor
