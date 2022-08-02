@@ -6,12 +6,12 @@ import { clsxm } from '@/lib'
 import { NextPage } from 'next'
 import Link from 'next/link'
 
-const DashboardPage: NextPage = () => {
+const MyPostPage: NextPage = () => {
   return (
     <AuthLayout>
       <div className={clsxm('flex justify-between items-center')}>
         <h2>My Post</h2>
-        <Link href='/dashboard/post/add-post'>
+        <Link href='/my-post/add-post'>
           <PrimaryButton>Add Post</PrimaryButton>
         </Link>
       </div>
@@ -19,4 +19,4 @@ const DashboardPage: NextPage = () => {
   )
 }
 
-export default DashboardPage
+export default MyPostPage
