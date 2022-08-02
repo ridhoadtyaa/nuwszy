@@ -12,6 +12,9 @@ module.exports = {
       },
       fontFamily: {
         primary: ["'Graphik'", ...fontFamily.sans]
+      },
+      boxShadow: {
+        allSide: '0 0 8px #cbd5e1'
       }
     }
   },
