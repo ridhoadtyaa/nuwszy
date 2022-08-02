@@ -10,3 +10,9 @@ export const registerSchema = yup.object().shape({
   email: yup.string().required().email('Invalid email address'),
   password: yup.string().required().min(6)
 })
+
+export const postSchema = yup.object().shape({
+  title: yup.string().required().min(10).max(100),
+  description: yup.string().required().max(150).min(75),
+  category: yup.string().required()
+})
