@@ -27,7 +27,8 @@ const RegisterPage: NextPage = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting }
+    formState: { errors, isSubmitting },
+    reset
   } = useForm<SignupUserPayload>({
     resolver: yupResolver(registerSchema),
     shouldFocusError: true
@@ -36,15 +37,15 @@ const RegisterPage: NextPage = () => {
   const onSubmit: SubmitHandler<SignupUserPayload> = async (data) => {
     const res = await signUp(data)
 
-    if (res) console.log('mantap')
+    if (res) reset()
   }
 
   useEffect(() => {
-    if (user) router.push('/dashboard')
+    if (user) router.push('/my-post')
   }, [router, user])
 
   return (
-    <div className={clsxm('bg-blue-100/50 min-h-screen', 'flex items-center')}>
+    <div className={clsxm('flex items-center')}>
       <div className={clsxm('max-w-lg mx-auto w-11/12 sm:w-full', 'py-8')}>
         <UnstyledLink href='/'>
           <NextImage
@@ -55,7 +56,7 @@ const RegisterPage: NextPage = () => {
             className={clsxm('mx-auto', 'mb-12')}
           />
         </UnstyledLink>
-        <div className={clsxm('bg-white rounded-md', 'py-12 px-10')}>
+        <div className={clsxm('bg-white rounded-lg', 'py-12 px-10', 'shadow-allSide')}>
           <h3 className={clsxm('text-primary font-medium text-center', 'mb-3')}>
             Register Account
           </h3>
