@@ -89,7 +89,7 @@ const Nav: React.FunctionComponent = () => {
           </UnstyledLink>
         ) : (
           <UnstyledLink
-            href='/dashboard'
+            href='/my-post'
             className={clsxm(
               'bg-slate-200 hover:bg-slate-300 lg:bg-transparent lg:hover:bg-transparent',
               'py-2 px-6 lg:px-0',

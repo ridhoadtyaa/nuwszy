@@ -52,20 +52,14 @@ const Header: React.FunctionComponent = () => {
       >
         <div className={clsxm('space-x-10', 'font-medium')}>
           <UnstyledLink
-            href='/dashboard'
-            className={clsxm(
-              'py-4',
-              router.pathname === '/dashboard' && 'border-b-4 border-primary'
-            )}
+            href='/my-post'
+            className={clsxm('py-4', router.pathname === '/my-post' && 'border-b-4 border-primary')}
           >
             My Post
           </UnstyledLink>
           <UnstyledLink
-            href='/dashboard/profile'
-            className={clsxm(
-              'py-4',
-              router.pathname === '/dashboard/profile' && 'border-b-4 border-primary'
-            )}
+            href='/profile'
+            className={clsxm('py-4', router.pathname === '/profile' && 'border-b-4 border-primary')}
           >
             Profile
           </UnstyledLink>
