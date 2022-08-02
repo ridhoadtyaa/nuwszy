@@ -2,8 +2,12 @@ declare module 'nuwszy' {
   export type Post = {
     id: number
     title: string
+    description: string
+    thumbnail: string
     content: string
+    category: string
     slug: string
+    user_id: string
     created_at: string
   }
 
