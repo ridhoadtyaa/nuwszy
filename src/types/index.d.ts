@@ -7,6 +7,7 @@ declare module 'nuwszy' {
     content: string
     category: string
     slug: string
+    views: number
     user_id: string
     created_at: string
   }
