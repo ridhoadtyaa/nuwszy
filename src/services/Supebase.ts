@@ -87,20 +87,19 @@ export const createPost = async (payload: Post, content: string, userId: string)
     if (content.length < 200) return
 
     const file = payload.thumbnail[0]
+    const fileName = `${userId}-${uuidv4()}`
 
-    const uploadThumbnail = await supabase.storage
-      .from('thumbnails')
-      .upload(`${userId}-${uuidv4()}`, file, {
-        cacheControl: '3600',
-        upsert: true
-      })
+    await supabase.storage.from('thumbnails').upload(fileName, file, {
+      cacheControl: '3600',
+      upsert: true
+    })
 
     const randomNumber = Math.floor(Math.random() * (999 - 100 + 1) + 100)
 
     const uploadPost = await supabase.from<Post>('posts').insert([
       {
         ...payload,
-        thumbnail: uploadThumbnail.data?.Key,
+        thumbnail: fileName,
         content,
         user_id: userId,
         slug:
@@ -144,5 +143,44 @@ export const getDetailPost = async (slug: string) => {
     return data
   } catch (error) {
     console.log((error as Error).message)
+  }
+}
+
+export const getUserPost = async (userId: string) => {
+  try {
+    const { data, error } = await supabase
+      .from<Post>('posts')
+      .select()
+      .eq('user_id', userId)
+      .order('created_at', { ascending: false })
+
+    if (error) throw new CustomError(error)
+    return data
+  } catch (error) {
+    console.log((error as Error).message)
+  }
+}
+
+export const getThumbnailPost = (name: string) => {
+  const { publicURL } = supabase.storage.from('thumbnails').getPublicUrl(name)
+
+  return publicURL
+}
+
+export const deletePost = async (postId: number) => {
+  const toastId = toast.loading('Waiting...')
+  try {
+    const { error } = await supabase.from<Post>('posts').delete().eq('id', postId)
+
+    if (error) throw new CustomError(error)
+
+    toast.success('Post successfully deleted')
+    return true
+  } catch (error) {
+    error instanceof Error && toast.error(error.message)
+
+    return false
+  } finally {
+    toast.remove(toastId)
   }
 }
