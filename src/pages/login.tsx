@@ -42,8 +42,8 @@ const LoginPage: NextPage = () => {
   }, [router, user])
 
   return (
-    <div className={clsxm('flex items-center')}>
-      <div className={clsxm('max-w-lg mx-auto w-11/12 sm:w-full', 'py-8')}>
+    <div className={clsxm('flex', 'min-h-screen')}>
+      <div className={clsxm('max-w-lg m-auto w-11/12 sm:w-full', 'py-8')}>
         <UnstyledLink href='/'>
           <NextImage
             src='/img/nuwszy-logo.png'
