@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['assets.architecturaldigest.in']
+    domains: ['assets.architecturaldigest.in', 'kvrskzptxijfmjnxdjiz.supabase.co']
   }
 }
 
