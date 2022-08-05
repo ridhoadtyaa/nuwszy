@@ -122,6 +122,48 @@ export const createPost = async (payload: Post, content: string, userId: string)
   }
 }
 
+export const updatePost = async (payload: Post, userId: string) => {
+  const toastId = toast.loading('Update the post...')
+  try {
+    if (!payload.content) {
+      toast.error('Field content is required')
+      return
+    }
+
+    if (payload.content.length < 200) {
+      toast.error('Field content must be at least 200 characters')
+      return
+    }
+
+    let fileName = payload.thumbnail
+
+    if (typeof payload.thumbnail !== 'string') {
+      const file = payload.thumbnail[0]
+      fileName = `${userId}-${uuidv4()}`
+
+      await supabase.storage.from('thumbnails').upload(fileName, file, {
+        cacheControl: '3600',
+        upsert: true
+      })
+    }
+
+    const updatePost = await supabase
+      .from<Post>('posts')
+      .update({ ...payload, thumbnail: fileName })
+      .eq('slug', payload.slug)
+
+    if (updatePost.error) throw new CustomError(updatePost.error)
+
+    toast.success('Post successfully updated')
+    return updatePost.data
+  } catch (error) {
+    error instanceof Error && toast.error(error.message)
+    return null
+  } finally {
+    toast.remove(toastId)
+  }
+}
+
 export const getAllPosts = async () => {
   try {
     const { data, error } = await supabase.from<Post[]>('posts').select()
