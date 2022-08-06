@@ -48,7 +48,7 @@ const MyPostPage: NextPage = () => {
   )
 
   return (
-    <AuthLayout>
+    <AuthLayout title='My Post'>
       <section className={clsxm('flex justify-between items-center')}>
         <h2>My Post</h2>
         <Link href='/my-post/add-post'>

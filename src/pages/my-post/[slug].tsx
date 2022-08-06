@@ -71,7 +71,7 @@ const EditPostPage: NextPage<EditPostPageProps> = ({ post }) => {
   }, [post.user_id, router, user?.id])
 
   return (
-    <AuthLayout>
+    <AuthLayout title='Edit Post'>
       <h2>Edit Post</h2>
 
       <form className='mt-10 mb-16' onSubmit={handleSubmit(onSubmit)}>
