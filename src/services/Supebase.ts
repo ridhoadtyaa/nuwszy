@@ -226,3 +226,41 @@ export const deletePost = async (postId: number) => {
     toast.remove(toastId)
   }
 }
+
+export const updateNameUser = async (newName: string) => {
+  const toastId = toast.loading('Updating...')
+  try {
+    const { user, error } = await supabase.auth.update({
+      data: { name: newName }
+    })
+
+    if (error) throw new CustomError(error)
+
+    toast.success('Name successfully updated')
+    return user
+  } catch (error) {
+    error instanceof Error && toast.error(error.message)
+
+    return false
+  } finally {
+    toast.remove(toastId)
+  }
+}
+
+export const updatePasswordUser = async (newPassword: string) => {
+  const toastId = toast.loading('Updating...')
+  try {
+    const { user, error } = await supabase.auth.update({ password: newPassword })
+
+    if (error) throw new CustomError(error)
+
+    toast.success('Password successfully updated')
+    return user
+  } catch (error) {
+    error instanceof Error && toast.error(error.message)
+
+    return false
+  } finally {
+    toast.remove(toastId)
+  }
+}
