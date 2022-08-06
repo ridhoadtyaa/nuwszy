@@ -10,7 +10,7 @@ type ButtonProps = React.DetailedHTMLProps<
 const Button: React.FunctionComponent<ButtonProps> = ({ className, ...props }) => {
   return createElement('button', {
     ...props,
-    className: clsxm('inline-flex items-center justify-center', className)
+    className: clsxm('inline-flex items-center justify-center', 'outline-none', className)
   })
 }
 
