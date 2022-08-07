@@ -1,42 +1,115 @@
 import MainLayout from '@/components/Layouts/MainLayout'
 import ArticleCard from '@/components/UI/ArticleCard'
+import UnstyledLink from '@/components/UI/links/UnstyedLink'
 
 import { clsxm } from '@/lib'
+import { getAllPosts, getThumbnailPost } from '@/services/Supebase'
 
 import type { NextPage } from 'next'
 import { Post } from 'nuwszy'
+import { useEffect, useState } from 'react'
 
-type HomePageProps = {
-  posts: Post[]
-}
+const Home: NextPage = () => {
+  const [posts, setPosts] = useState<Post[] | undefined>()
 
-const Home: NextPage<HomePageProps> = () => {
+  useEffect(() => {
+    ;(async () => {
+      const res = await getAllPosts()
+
+      setPosts(res)
+    })()
+  }, [])
+
   return (
     <MainLayout>
-      <section>
+      <section className={clsxm('space-y-20')}>
         <div>
-          <h1 className={clsxm('text-primary', 'mb-6')}>Design Tools</h1>
-          <ArticleCard
-            category='DESIGN TOOLS'
-            date='2022-06-20 14:49:15+00'
-            title='10 Hilarious Cartoons That Depict Real-Life Problems of Programmers'
-            desc=' Redefined the user acquisition and redesigned the onboarding experience, all within 3
-              working weeks.'
-            thumbnail='https://assets.architecturaldigest.in/photos/60084dd6cce5700439e12bf7/16:9/w_2560%2Cc_limit/modern-living-room-decor-1366x768.jpg'
-            slug='test-test'
-          />
+          <UnstyledLink href='/category/design-tools'>
+            <h1 className={clsxm('text-primary', 'mb-6')}>Design Tools</h1>
+          </UnstyledLink>
+          <div>
+            {posts
+              ?.filter((post) => post.category === 'Design Tools')
+              .slice(0, 3)
+              .map((post) => (
+                <ArticleCard
+                  key={post.id}
+                  category={post.category}
+                  date={post.created_at}
+                  title={post.title}
+                  desc={post.description}
+                  thumbnail={getThumbnailPost(post.thumbnail) as string}
+                  slug={post.slug}
+                />
+              ))}
+          </div>
+        </div>
+        <div>
+          <UnstyledLink href='/category/daily-update'>
+            <h1 className={clsxm('text-primary', 'mb-6')}>Daily Update</h1>
+          </UnstyledLink>
+          <div>
+            {posts
+              ?.filter((post) => post.category === 'Daily Update')
+              .slice(0, 3)
+              .map((post) => (
+                <ArticleCard
+                  key={post.id}
+                  category={post.category}
+                  date={post.created_at}
+                  title={post.title}
+                  desc={post.description}
+                  thumbnail={getThumbnailPost(post.thumbnail) as string}
+                  slug={post.slug}
+                />
+              ))}
+          </div>
+        </div>
+        <div>
+          <UnstyledLink href='/category/tutorials'>
+            <h1 className={clsxm('text-primary', 'mb-6')}>Tutorials</h1>
+          </UnstyledLink>
+          <div>
+            {posts
+              ?.filter((post) => post.category === 'Tutorials')
+              .slice(0, 3)
+              .map((post) => (
+                <ArticleCard
+                  key={post.id}
+                  category={post.category}
+                  date={post.created_at}
+                  title={post.title}
+                  desc={post.description}
+                  thumbnail={getThumbnailPost(post.thumbnail) as string}
+                  slug={post.slug}
+                />
+              ))}
+          </div>
+        </div>
+        <div>
+          <UnstyledLink href='/category/coding'>
+            <h1 className={clsxm('text-primary', 'mb-6')}>Coding</h1>
+          </UnstyledLink>
+          <div>
+            {posts
+              ?.filter((post) => post.category === 'Coding')
+              .slice(0, 3)
+              .map((post) => (
+                <ArticleCard
+                  key={post.id}
+                  category={post.category}
+                  date={post.created_at}
+                  title={post.title}
+                  desc={post.description}
+                  thumbnail={getThumbnailPost(post.thumbnail) as string}
+                  slug={post.slug}
+                />
+              ))}
+          </div>
         </div>
       </section>
     </MainLayout>
   )
 }
-
-// export const getServerSideProps = async () => {
-//   const posts = await getAllPosts()
-
-//   return {
-//     props: { posts }
-//   }
-// }
 
 export default Home
