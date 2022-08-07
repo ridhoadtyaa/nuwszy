@@ -87,7 +87,7 @@ export const createPost = async (payload: Post, content: string, userId: string)
     if (content.length < 200) return
 
     const file = payload.thumbnail[0]
-    const fileName = `${userId}-${uuidv4()}`
+    const fileName = `${uuidv4()}-${uuidv4()}`
 
     await supabase.storage.from('thumbnails').upload(fileName, file, {
       cacheControl: '3600',
@@ -139,7 +139,7 @@ export const updatePost = async (payload: Post, userId: string) => {
 
     if (typeof payload.thumbnail !== 'string') {
       const file = payload.thumbnail[0]
-      fileName = `${userId}-${uuidv4()}`
+      fileName = `${uuidv4()}-${uuidv4()}`
 
       await supabase.storage.from('thumbnails').upload(fileName, file, {
         cacheControl: '3600',
@@ -147,10 +147,20 @@ export const updatePost = async (payload: Post, userId: string) => {
       })
     }
 
+    const randomNumber = Math.floor(Math.random() * (999 - 100 + 1) + 100)
+
     const updatePost = await supabase
       .from<Post>('posts')
-      .update({ ...payload, thumbnail: fileName })
-      .eq('slug', payload.slug)
+      .update({
+        ...payload,
+        thumbnail: fileName,
+        slug:
+          slugify(payload.title, { lower: true, locale: 'en' }) +
+          '-' +
+          userId.split('-')[0] +
+          randomNumber
+      })
+      .eq('id', payload.id)
 
     if (updatePost.error) throw new CustomError(updatePost.error)
 
@@ -166,7 +176,10 @@ export const updatePost = async (payload: Post, userId: string) => {
 
 export const getAllPosts = async () => {
   try {
-    const { data, error } = await supabase.from<Post[]>('posts').select()
+    const { data, error } = await supabase
+      .from<Post>('posts')
+      .select()
+      .order('created_at', { ascending: false })
 
     if (error) throw new CustomError(error)
 
@@ -179,6 +192,22 @@ export const getAllPosts = async () => {
 export const getDetailPost = async (slug: string) => {
   try {
     const { data, error } = await supabase.from<Post>('posts').select().eq('slug', slug).single()
+
+    if (error) throw new CustomError(error)
+
+    return data
+  } catch (error) {
+    console.log((error as Error).message)
+  }
+}
+
+export const getPostsByCategory = async (category: string) => {
+  try {
+    const { data, error } = await supabase
+      .from<Post>('posts')
+      .select()
+      .eq('category', category)
+      .order('created_at', { ascending: false })
 
     if (error) throw new CustomError(error)
 
