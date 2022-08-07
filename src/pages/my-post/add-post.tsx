@@ -71,7 +71,7 @@ const AddPostPage: NextPage = () => {
             Description
           </label>
           <textarea
-            maxLength={150}
+            maxLength={140}
             className={clsxm(
               'w-full',
               'border border-slate-300 outline-none',
