@@ -31,13 +31,18 @@ const ArticleCard: React.FunctionComponent<ArticleCardProps> = ({
         'flex flex-col-reverse items-center sm:flex-row',
         'sm:space-x-16',
         'py-12',
-        'border-y border-sky-100'
+        'border-t border-sky-100'
       )}
     >
       <div className={clsxm('text-primary', 'w-full sm:w-8/12')}>
         <div className={clsxm('inline-flex items-center', 'space-x-5', 'mt-7 mb-7 sm:mt-0')}>
           <div
-            className={clsxm('bg-sky-100/70', 'rounded-l-md', 'py-2 px-4', 'font-semibold text-sm')}
+            className={clsxm(
+              'bg-sky-100/70',
+              'rounded-l-md',
+              'py-2 px-4',
+              'font-semibold text-sm uppercase'
+            )}
           >
             {category}
           </div>
