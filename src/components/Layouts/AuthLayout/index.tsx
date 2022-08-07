@@ -36,7 +36,7 @@ const AuthLayout: React.FunctionComponent<AuthLayoutProps> = ({ children, title 
       </Head>
       <Header />
 
-      <main className={clsxm('px-10', 'mt-8')}>{children}</main>
+      <main className={clsxm('px-10', 'mt-44')}>{children}</main>
     </>
   )
 }
