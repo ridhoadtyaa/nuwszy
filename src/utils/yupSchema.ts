@@ -13,6 +13,6 @@ export const registerSchema = yup.object().shape({
 
 export const postSchema = yup.object().shape({
   title: yup.string().required().min(10).max(100),
-  description: yup.string().required().max(150).min(75),
+  description: yup.string().required().max(140).min(75),
   category: yup.string().required()
 })
