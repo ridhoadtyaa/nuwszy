@@ -59,7 +59,10 @@ const EditPostPage: NextPage<EditPostPageProps> = ({ post }) => {
   })
 
   const onSubmit: SubmitHandler<Post> = async (data) => {
-    const res = await updatePost({ ...data, content, slug: post.slug }, user?.id as string)
+    const res = await updatePost(
+      { ...data, content, slug: post.slug, id: post.id },
+      user?.id as string
+    )
 
     if (res) {
       router.push('/my-post')
@@ -98,7 +101,7 @@ const EditPostPage: NextPage<EditPostPageProps> = ({ post }) => {
             Description
           </label>
           <textarea
-            maxLength={150}
+            maxLength={140}
             className={clsxm(
               'w-full',
               'border border-slate-300 outline-none',
