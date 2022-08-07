@@ -21,7 +21,7 @@ const Header: React.FunctionComponent = () => {
   }
 
   return (
-    <header>
+    <header className={clsxm('fixed top-0 z-50', 'w-full bg-white')}>
       <nav
         className={clsxm(
           'py-5 px-10',
