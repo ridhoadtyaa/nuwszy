@@ -58,7 +58,7 @@ const MyPostPage: NextPage = () => {
 
       <section className={clsxm('my-10', 'grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-8')}>
         {posts?.map((post) => (
-          <div key={post.id} className={clsxm('overflow-hidden', 'rounded-md w-ful shadow-md')}>
+          <div key={post.id} className={clsxm('overflow-hidden', 'rounded-md w-full shadow-md')}>
             <div className={clsxm('relative')}>
               <NextImage
                 width={200}
@@ -68,6 +68,7 @@ const MyPostPage: NextPage = () => {
                 useSkeleton
                 blurClassName='animate-pulse bg-slate-200'
                 className='w-full'
+                imgClassName='object-cover object-center'
               />
               <PostCategory category={post.category} />
             </div>
@@ -77,7 +78,7 @@ const MyPostPage: NextPage = () => {
                 {dateFormat(post.created_at, 'en-US', dateConfig)}
               </p>
               <p className='mt-2 text-slate-500'>{post.description}</p>
-              <div className={clsxm('mt-4', 'flex justify-between items-center', 'space-x-4')}>
+              <div className={clsxm('mt-6', 'flex justify-between items-center', 'space-x-4')}>
                 <div
                   className={clsxm('flex items-center space-x-2', 'text-slate-400')}
                   title='Number of viewers'
