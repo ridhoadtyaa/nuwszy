@@ -1,8 +1,8 @@
-import MainLayout from '@/components/Layouts/MainLayout'
+import MainLayout, { LayoutProps } from '@/components/Layouts/MainLayout'
 import ArticleCard from '@/components/UI/ArticleCard'
 import CategoryHeader from '@/components/UI/CategoryHeader'
 
-import { clsxm } from '@/lib'
+import { clsxm, getMetaData } from '@/lib'
 import { getPostsByCategory, getThumbnailPost } from '@/services/Supebase'
 
 import { NextPage } from 'next'
@@ -39,8 +39,19 @@ const Category: NextPage = () => {
     })()
   }, [categoryTitle])
 
+  const meta = getMetaData({
+    title: 'Nuwszy',
+    template: categoryTitle,
+    description: `Any insight about ${categoryTitle}`,
+    keywords: ['Nuwszy', 'News', 'Post', categoryTitle],
+    og_image: `https://ik.imagekit.io/qmw3y9jqe/nuwszy-logo__1__KsgfOx2V9.png?ik-sdk-version=javascript-1.4.3&updatedAt=1659966251346`,
+    og_image_alt: 'Nuwszy',
+    slug: `/category/${category}`,
+    type: 'website'
+  })
+
   return (
-    <MainLayout customHeader={<CategoryHeader title={category} />}>
+    <MainLayout customHeader={<CategoryHeader title={category} />} {...(meta as LayoutProps)}>
       <section>
         <h1 className={clsxm('capitalize text-primary', 'mb-6')}>{category?.replace('-', ' ')}</h1>
         <div>

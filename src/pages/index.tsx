@@ -1,8 +1,8 @@
-import MainLayout from '@/components/Layouts/MainLayout'
+import MainLayout, { LayoutProps } from '@/components/Layouts/MainLayout'
 import ArticleCard from '@/components/UI/ArticleCard'
 import UnstyledLink from '@/components/UI/links/UnstyedLink'
 
-import { clsxm } from '@/lib'
+import { clsxm, getMetaData } from '@/lib'
 import { getAllPosts, getThumbnailPost } from '@/services/Supebase'
 
 import type { NextPage } from 'next'
@@ -20,8 +20,19 @@ const Home: NextPage = () => {
     })()
   }, [])
 
+  const meta = getMetaData({
+    title: 'Nuwszy',
+    template: 'Home',
+    description: `Get lots of interesting insights from various people here.`,
+    keywords: ['Nuwszy', 'News', 'Post'],
+    og_image: `https://ik.imagekit.io/qmw3y9jqe/nuwszy-logo__1__KsgfOx2V9.png?ik-sdk-version=javascript-1.4.3&updatedAt=1659966251346`,
+    og_image_alt: 'Nuwszy',
+    slug: '/',
+    type: 'website'
+  })
+
   return (
-    <MainLayout>
+    <MainLayout {...(meta as LayoutProps)}>
       <section className={clsxm('space-y-20')}>
         <div>
           <UnstyledLink href='/category/design-tools'>
