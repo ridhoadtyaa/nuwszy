@@ -49,7 +49,7 @@ const ArticleCard: React.FunctionComponent<ArticleCardProps> = ({
           <div className={clsxm('text-sm font-medium')}>{dateFormat(date, 'en-US', config)}</div>
         </div>
         <div>
-          <UnstyledLink href={slug}>
+          <UnstyledLink href={`/post/${slug}`}>
             <h2>{title}</h2>
           </UnstyledLink>
           <p className={clsxm('mt-5')}>{desc}</p>
