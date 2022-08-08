@@ -238,6 +238,20 @@ export const getThumbnailPost = (name: string) => {
   return publicURL
 }
 
+export const updateViewsPost = async (slug: string, currentViews: number) => {
+  try {
+    const { data, error } = await supabase
+      .from<Post>('posts')
+      .update({ views: currentViews === null ? 1 : currentViews + 1 })
+      .eq('slug', slug)
+
+    if (error) throw new CustomError(error)
+    return data
+  } catch (error) {
+    console.log((error as Error).message)
+  }
+}
+
 export const deletePost = async (postId: number) => {
   const toastId = toast.loading('Waiting...')
   try {
