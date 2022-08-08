@@ -1,4 +1,5 @@
 import '@/styles/globals.css'
+import '@/styles/prism-coldark-dark.css'
 
 import type { AppProps } from 'next/app'
 import { Toaster } from 'react-hot-toast'
