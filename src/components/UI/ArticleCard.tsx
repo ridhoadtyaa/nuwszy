@@ -4,6 +4,8 @@ import { dateFormat } from '@/utils'
 import NextImage from './image/NextImage'
 import UnstyledLink from './links/UnstyedLink'
 
+import { useRouter } from 'next/router'
+
 type ArticleCardProps = {
   category: string
   date: string
@@ -24,6 +26,8 @@ const ArticleCard: React.FunctionComponent<ArticleCardProps> = ({
   const config = {
     dateStyle: 'long'
   } as Intl.DateTimeFormatOptions
+
+  const router = useRouter()
 
   return (
     <article
@@ -64,7 +68,8 @@ const ArticleCard: React.FunctionComponent<ArticleCardProps> = ({
         useSkeleton
         blurClassName='bg-slate-100'
         className={clsxm('w-full sm:w-4/12')}
-        imgClassName={clsxm('rounded-lg')}
+        imgClassName={clsxm('rounded-lg', 'cursor-pointer')}
+        onClick={() => router.push(`/post/${slug}`)}
       />
     </article>
   )
