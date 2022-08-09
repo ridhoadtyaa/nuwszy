@@ -83,8 +83,8 @@ const PostDetailPage: NextPage<{ slug: string }> = ({ slug }) => {
         </div>
       </section>
 
-      <section className={clsxm('py-20', 'mt-32', 'border-t border-sky-200')}>
-        <h2 className={clsxm('text-primary')}>Other interesting posts</h2>
+      <section className={clsxm('py-20', 'mt-32', 'border-t border-sky-100')}>
+        <h2 className={clsxm('text-primary', 'pb-12')}>Other interesting posts</h2>
         <div>
           {otherPosts?.map((p) => (
             <ArticleCard
