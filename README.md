@@ -14,4 +14,4 @@
 - React hot toast
 - React hook form + yup validation
 
-Landing page design by [Elikem J. Daniels](https://www.figma.com/community/file/1061110744289086034)
+Design by [Elikem J. Daniels](https://www.figma.com/community/file/1061110744289086034)
